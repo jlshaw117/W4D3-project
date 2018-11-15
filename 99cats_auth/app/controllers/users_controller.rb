@@ -5,17 +5,17 @@ class UsersController < ApplicationController
   end
   
   def create
-    debugger
     user = User.new(user_params)
     if user.save!
       redirect_to user_url(user)
     else
       redirect_to new_user_url
-    end  
+      render :new # looks for the new template
+    end   
   end
   
   def show
-    User.find(:id)
+    @user = User.find(params[:id])
     render :show
   end
   
